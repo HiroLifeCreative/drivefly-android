@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    namespace 'com.hirolifecreative.floatingmap'
+    buildFeatures { buildConfig true }
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.hirolifecreative.floatingmap'
+        minSdk 26
+        targetSdk 34
+        versionCode 93
+        versionName '93.0-drivefly'
+        if (project.hasProperty('targetAbi')) {
+            ndk { abiFilters project.property('targetAbi').toString() }
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+    packaging {
+        resources {
+            excludes += 'META-INF/kotlinx_coroutines_core.version'
+            excludes += 'META-INF/versions/**'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation 'androidx.car.app:app:1.4.0'
+    implementation 'androidx.car.app:app-projected:1.4.0'
+    implementation 'androidx.startup:startup-runtime:1.1.1'
+    implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
+    // Mapbox Maps SDK para el mapa principal y el flotante
+    implementation 'com.mapbox.maps:android:11.30.1'
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.lifecycle:lifecycle-runtime:2.6.2'
+    }
+}

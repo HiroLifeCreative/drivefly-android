@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DriveFly</string>
+    <string name="accessibility_desc">Lee las direcciones visibles de recogida y entrega en Dasher para actualizar tu mapa flotante. Si activas Aceptar pedidos automáticamente, también pulsa Aceptar en las ofertas visibles.</string>
+</resources>
